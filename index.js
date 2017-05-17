@@ -30,7 +30,7 @@ const App = {
     const roster = document.querySelector('.roster')
 
     const list = this.renderList(form.elements)
-    roster.appendChild(list)
+    roster.insertBefore(list, roster.firstChild)
   },
 
 
