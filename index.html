@@ -10,25 +10,25 @@
     <link rel="stylesheet" href="css/app.css">
   </head>
   <body>
-    <h1>Megaroster</h1>
 
-    <section>
-      <div>
-        <form>
-          <p>
-            <label for="Name">Name</label>
-            <input type="text" name="Name">
-          </p>
-          <p>
-            <button type="submit">Go</button>
-          </p>
-        </form>
-      </div>
-
-      <div class="roster"></div>
-    </section>
+    <div  class="row">
+      <div class="medium-offset-2 medium-8 columns"></div>
+      <h2>Megaroster</h2>
+      <form>
+        <div class="small-9 columns">
+          <input 
+            type="text"  
+            name="studentName" 
+            placeholder="Enter Student Name">
+        </div>
+        <div class="small-3 columns">
+          <button type="submit" class="expanded button">Add Student</button>
+        </div>
+      </form>
+    </div>  
     
-    <script src="index.js"></script>
+    
+    
   </body>
   <script src="js/vendor/jquery.js"></script>
   <script src="js/vendor/what-input.js"></script>
