@@ -1,31 +1,33 @@
 $(document).foundation()
 
-const megaroster = 
-{
-    init()
-    {
-        this.max = 0;
-        //adds event listener to form
-        document
-            .querySelector('#new-student')
-            .addEventListener('submit', this.addStudent.bind(this))
-    },
+const megaroster = {
+  init() {
+    this.studentList = document.querySelector('#student-list')
+    this.max = 0
+    //add event listener
+    document
+      .querySelector('#new-student')
+      .addEventListener('submit', this.addStudent.bind(this))
+  },
 
-    addStudent(ev)
-    {
-        event.preventDefault()
-        const f = ev.target
-        const student = {
-            id: this.max + 1,
-            name: f.studentName.value,
-        }
-        this.buildListItem(studentName)
-        this.max ++
-    },
+  addStudent(ev) {
+    ev.preventDefault()
+    const f = ev.target
+    const student = {
+      id: this.max + 1,
+      name: f.studentName.value,
+    }
+    
+    const listItem  = this.buildListItem(student)
+    this.studentList.appendChild(listItem)
+   
+    this.max ++
+  },
 
-    buildListItem(student)
-    {
-        console.log(student)
-    },
+  buildListItem(student) {
+    const li = document.createElement('li')
+    li.textContent = student.name
+    return li
+  },
 }
 megaroster.init()
