@@ -19,13 +19,18 @@ const megaroster = {
       name: f.studentName.value,
     }
 
-    this.students.push(student)
+    this.students.unshift(student) //use push instead of unshift to put the list item after instead of before in the array
     
     const listItem = this.buildListItem(student)
-    this.studentList.appendChild(listItem)
-    
+    this.prependChild(this.studentList, listItem)
+    //this.studentList.appendChild(listItem) --> to put the next list item after instead of before
     this.max ++
     f.reset()
+  },
+
+  prependChild(parent, child)
+  {
+    parent.insertBefore(child, this.studentList.firstChild)
   },
 
   buildListItem(student) {
