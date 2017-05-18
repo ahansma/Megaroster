@@ -30,6 +30,8 @@ const megaroster = {
     //this.studentList.appendChild(listItem) --> to put the next list item after instead of before
     this.max ++
     f.reset()
+
+    localStorage.setItem('roster', JSON.stringify)
   },
 
   prependChild(parent, child) {
