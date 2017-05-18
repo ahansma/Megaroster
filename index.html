@@ -14,17 +14,18 @@
       <div class="medium-offset-2 medium-8 columns">
         <h2>Megaroster</h2>
         <form id="new-student">
-          <div class="small-9 columns">
+          <div class="input-group">
             <input
+              class="input-group-field"
               type="text"
               name="studentName"
               placeholder="Enter student name"
               autofocus
               required
             >
-          </div>
-          <div class="small-3 columns">
-            <button type="submit" class="expanded button">Add Student</button>
+            <div class="input-group-button">
+              <button type="submit" class="expanded button">Add Student</button>
+            </div>
           </div>
         </form>
       </div>
@@ -33,15 +34,24 @@
     <div class="row">
       <div class="medium-offset-2 medium-8 columns">
         <ul id="student-list">
-          <li class="student template">
+          <li class="student template clearfix">
             <span class="student-name"></span>
-            <span class="actions">
+            <span class="actions button-group">
               <button type="button" class="remove alert button">Remove</button>
+              <button type="button" class="promote warning button">Promote</button>
             </span>
           </li>
         </ul>
       </div>
     </div>
+
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
 
 
     <script src="js/vendor/jquery.js"></script>
