@@ -7,31 +7,47 @@ const megaroster = {
     this.studentList = document.querySelector('#student-list')
     this.max = 0
     this.setupEventListeners()
+    this.load()
   },
 
   setupEventListeners() {
     document
       .querySelector('#new-student')
-      .addEventListener('submit', this.addStudent.bind(this))
+      .addEventListener('submit', this.addStudentViaForm.bind(this))
   },
 
-  addStudent(ev) {
+  load() {
+    const rosterString = localStorage.getItem('roster')
+    const rosterArray = JSON.parse(rosterString)
+    if (rosterArray) {
+      rosterArray
+        .reverse()
+        .map(this.addStudent.bind(this))
+    }
+  },
+
+  addStudentViaForm(ev) {
     ev.preventDefault()
     const f = ev.target
     const student = {
       id: this.max + 1,
       name: f.studentName.value,
     }
+    this.addStudent(student)
+    f.reset()
+  },
 
+  addStudent(student) {
     this.students.unshift(student) //use push instead of unshift to put the list item after instead of before in the array
     
-     const listItem = this.buildListItem(student)
+    const listItem = this.buildListItem(student)
     this.prependChild(this.studentList, listItem)
     //this.studentList.appendChild(listItem) --> to put the next list item after instead of before
-    this.max ++
-    f.reset()
-
-    localStorage.setItem('roster', JSON.stringify)
+    
+    if (student.id > this.max){
+        max = student.id
+    }
+    this.save()
   },
 
   prependChild(parent, child) {
@@ -52,22 +68,24 @@ const megaroster = {
     return li
   },
 
-  removeStudent(ev) {
-    const btn = ev.target
-    const name = btn.closest('.student')
-    name.remove()
-    const id = name.getAttribute('data-id')
-    const index =  this.findName(id)
-    this.students.splice(index, 1)
+  save() {
+      localStorage.setItem('roster', JSON.stringify(this.students))
   },
 
-  findName(index) {
-    for (let  i = 0; i < this.students.length;  i++){
-        if(this.students[i].id == index)
-        {
-            return i
-        }
+  removeStudent(ev) {
+    const btn = ev.target
+    const li = btn.closest('.student')
+
+    for (let i=0; i < this.students.length; i++) {
+      let currentId = this.students[i].id.toString()
+      if (currentId === li.dataset.id) {
+        this.students.splice(i, 1)
+        break
+      }
     }
+
+    li.remove()
+    this.save()
   },
 
   removeClassName(el, className) {
@@ -75,3 +93,5 @@ const megaroster = {
   }
 }
 megaroster.init()
+
+
