@@ -19,8 +19,8 @@
               type="text"
               name="studentName"
               placeholder="Enter student name"
-              autofocus 
-              required 
+              autofocus
+              required
             >
           </div>
           <div class="small-3 columns">
@@ -30,9 +30,16 @@
       </div>
     </div>
 
-    <div class="row" data-place="mars">
+    <div class="row">
       <div class="medium-offset-2 medium-8 columns">
-        <ul id="student-list"></ul>
+        <ul id="student-list">
+          <li class="student template">
+            <span class="student-name"></span>
+            <span class="actions">
+              <button type="button" class="remove alert button">Remove</button>
+            </span>
+          </li>
+        </ul>
       </div>
     </div>
 
