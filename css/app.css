@@ -34,3 +34,8 @@ h2 {
   float: right;
   margin-bottom: 0;
 }
+
+.promoted{
+  background-color: #FFA807;
+  border-color: #ffc656;
+}

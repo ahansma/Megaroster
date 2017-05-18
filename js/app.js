@@ -1,20 +1,21 @@
 $(document).foundation()
 
-const megaroster = {
-  students: [],
+class Megaroster {
+  
 
-  init() {
+  constructor() {
     this.studentList = document.querySelector('#student-list')
+    this.students =  []
     this.max = 0
     this.setupEventListeners()
     this.load()
-  },
+  }
 
   setupEventListeners() {
     document
       .querySelector('#new-student')
       .addEventListener('submit', this.addStudentViaForm.bind(this))
-  },
+  }
 
   load() {
     const rosterString = localStorage.getItem('roster')
@@ -24,7 +25,7 @@ const megaroster = {
         .reverse()
         .map(this.addStudent.bind(this))
     }
-  },
+  }
 
   addStudentViaForm(ev) {
     ev.preventDefault()
@@ -35,7 +36,7 @@ const megaroster = {
     }
     this.addStudent(student)
     f.reset()
-  },
+  }
 
   addStudent(student) {
     this.students.unshift(student) //use push instead of unshift to put the list item after instead of before in the array
@@ -44,15 +45,16 @@ const megaroster = {
     this.prependChild(this.studentList, listItem)
     //this.studentList.appendChild(listItem) --> to put the next list item after instead of before
     
-    if (student.id > this.max){
-        this.max = student.id
+    if (student.id > this.max) {
+      this.max = student.id
     }
+
     this.save()
-  },
+  }
 
   prependChild(parent, child) {
     parent.insertBefore(child, parent.firstChild)
-  },
+  }
 
   buildListItem(student) {
     const template = document.querySelector('.student.template')
@@ -60,18 +62,40 @@ const megaroster = {
     li.querySelector('.student-name').textContent = student.name
     li.setAttribute('title', student.name)
     li.dataset.id = student.id
+
+    if (student.promoted) {
+      li.classList.add('promoted')
+    }
+
     this.removeClassName(li, 'template')
 
     li
       .querySelector('button.remove')
       .addEventListener('click', this.removeStudent.bind(this))
+    li
+      .querySelector('button.promote')
+      .addEventListener('click', this.promoteStudent.bind(this, student))
 
     return li
-  },
+  }
 
   save() {
       localStorage.setItem('roster', JSON.stringify(this.students))
-  },
+  }
+
+  promoteStudent(student, ev) {
+    const btn = ev.target
+    const li = btn.closest('.student')
+    student.promoted = !student.promoted
+
+    if (student.promoted) {
+      li.classList.add('promoted')
+    } else {
+      li.classList.remove('promoted')
+    }
+
+    this.save()
+  }
 
   removeStudent(ev) {
     const btn = ev.target
@@ -87,12 +111,13 @@ const megaroster = {
 
     li.remove()
     this.save()
-  },
+  }
 
   removeClassName(el, className) {
     el.className = el.className.replace(className, '').trim()
   }
 }
-megaroster.init()
+new  Megaroster()
+
 
 
