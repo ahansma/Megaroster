@@ -12,10 +12,22 @@ h2 {
 .student{
   border:1px solid #ddd;
   padding: 0.75rem 1.25rem;
+  height: 4rem;
 }
 
 .student + .student{
   border-top: 0;
+}
+
+.student-name{
+  float:left;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  line-height: 38px;
+  white-space: nowrap;
+  width: 5rem;
+  width: calc(100%-110px);
+
 }
 
 .actions{

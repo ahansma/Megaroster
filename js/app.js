@@ -45,7 +45,7 @@ const megaroster = {
     //this.studentList.appendChild(listItem) --> to put the next list item after instead of before
     
     if (student.id > this.max){
-        max = student.id
+        this.max = student.id
     }
     this.save()
   },
@@ -58,6 +58,7 @@ const megaroster = {
     const template = document.querySelector('.student.template')
     const li = template.cloneNode(true)
     li.querySelector('.student-name').textContent = student.name
+    li.setAttribute('title', student.name)
     li.dataset.id = student.id
     this.removeClassName(li, 'template')
 
