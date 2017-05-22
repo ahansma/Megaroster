@@ -1,7 +1,7 @@
-*{
+/**{
   background-color: lightblue;
   color: white;
-}
+}*/
 
 .template {
   visibility: hidden;
@@ -11,6 +11,7 @@
   border: 1px solid #ddd;
   padding: 0.75rem 1.25rem;
   height: 4rem;
+  transition: 0.35s;
 }
 
 .student + .student {
@@ -36,15 +37,19 @@
   border-color: #ffc656;
 }
 
-.student:first-child button.move-up {
-  background-color: #ddd;
-  color: #eee;
-  cursor: not-allowed;
-}
-
-.student:nth-last-child(2) button.move-down {
+.student:nth-last-child(2) button.move-down, .student:first-child button.move-up {
     background-color: #ddd;
     color: #eee;
     cursor: not-allowed;
 }
-/* a space in css means "descendent of"
+/* a space in css means "descendent of"*/
+[contenteditable]:hover{
+  outline-color: -webkit-focus-ring-color;
+  outline-style: auto;
+  outline-width: 2px;
+
+}
+
+[contenteditable]:hover {
+  outline-width: 5px;
+}
