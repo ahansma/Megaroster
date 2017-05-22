@@ -6,6 +6,7 @@ class Megaroster {
     this.students = []
     this.max = 0
     this.setupEventListeners()
+    this.loading = true
     this.load()
   }
 
@@ -84,9 +85,12 @@ class Megaroster {
       .addEventListener('click', this.moveUp.bind(this, student))
     li
       .querySelector('button.move-down')
-       .addEventListener('click', this.moveDown.bind(this, student))
+      .addEventListener('click', this.moveDown.bind(this, student))
+    li
+      .querySelector('button.save')
+      .addEventListener('click', this.saveEdit.bind(this, student))
+   
   }
-
   save() {
     localStorage.setItem('roster', JSON.stringify(this.students))
   }
@@ -109,8 +113,7 @@ class Megaroster {
     }
   }
 
-  moveDown(student, ev)
-  {
+  moveDown(student, ev) {
     const btn = ev.target
     const li = btn.closest('.student')
 
@@ -124,8 +127,27 @@ class Megaroster {
         const nextStudent = this.students[index + 1]
         this.students[index + 1] = student
         this.students[index] = nextStudent
-        this.save()
+        this.studentList.insertBefore(li.nextElementSibling, li)
+        this.save();
     }  
+  }
+
+  saveEdit(student, ev) {
+      const btn = ev.target
+      const li = btn.closest('.student')
+      const div = li.firstElementChild
+
+      for (let i = 0; i < this.students.length; i++){
+            let currentId = this.students[i].id.toString()
+            if (currentId === li.dataset.id){
+                    this.students[i].name = div.textContent
+                    break
+                }
+           }
+
+     this.save();
+
+
   }
 
   promoteStudent(student, ev) {

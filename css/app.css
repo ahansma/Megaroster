@@ -1,3 +1,8 @@
+*{
+  background-color: lightblue;
+  color: white;
+}
+
 .template {
   visibility: hidden;
 }
@@ -18,7 +23,7 @@
   overflow-x: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: calc(100% - 195px)
+  width: calc(100% - 230px)
 }
 
 .actions {
@@ -37,9 +42,9 @@
   cursor: not-allowed;
 }
 
-.student:last-child button.move-down {
-  background-color: #ddd;
-  color: #eee;
-  cursor: not-allowed;
+.student:nth-last-child(2) button.move-down {
+    background-color: #ddd;
+    color: #eee;
+    cursor: not-allowed;
 }
 /* a space in css means "descendent of"
